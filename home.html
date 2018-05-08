@@ -8,7 +8,7 @@
       <link rel="stylesheet" type="text/css" href="css/main.css">
       <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAn79_RPcO8QoDo5vatp7TMnWqB3fTf8FM&libraries=places&callback=initMap"async defer></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAjhXVABFxTOnBzKzZnC1dICeZ1fqDyDg&libraries=places&callback=initMap"async defer></script>
   </head>
   <body>
       <div id="driver-status" class="controls">
@@ -20,6 +20,7 @@
       </div>
       <input id="origin-input" class="controls" type="text" placeholder="Enter an origin location">
       <input id="destination-input" class="controls" type="text" placeholder="Enter a destination location">
+      
       <div id="map"></div>
       
       <script>
@@ -39,7 +40,10 @@
                   mapTypeControl: false,
                   center: {lat: 14.5995, lng: 120.9842},
                   zoom: 15,
-                  fullscreenControl: false
+                  fullscreenControl: false,
+                  panControl: false,
+                  zoomControl: true,
+                  scaleControl: true
               });
               
               navigator.geolocation.getCurrentPosition(function(position) {
@@ -49,7 +53,7 @@
                   };
                   
                   var opt = {
-                		  enableHighAccuracy: true
+                		  enableHighAccuracy: true,  
                   }
                   
                   map.setCenter(pos, opt);
@@ -76,6 +80,15 @@
               
               new AutocompleteDirectionsHandler(map);
           }
+          
+          
+          var Data = [];		// This array stores all trip requests
+          var viewportMarkers = [];     // this array stores the trips in the current viewport
+          var infoWindow;
+          var handle1, handle2;
+          var markerCount = 0;
+          
+          
           
           // Updating driver status with position.
           function updateDriverStatusWithPos(status) {
@@ -160,6 +173,9 @@
                   }
               })
           }
+          
+          
+          
           
           
        /**
