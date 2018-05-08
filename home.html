@@ -47,7 +47,12 @@
                       lat: position.coords.latitude,
                       lng: position.coords.longitude
                   };
-                  map.setCenter(pos);
+                  
+                  var opt = {
+                		  enableHighAccuracy = true
+                  }
+                  
+                  map.setCenter(pos, opt);
                   
                   // Capture the origin position coordinates.
                   origin_position = position.coords.latitude + "," + position.coords.longitude;
