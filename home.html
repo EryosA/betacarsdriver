@@ -48,6 +48,11 @@
                   overviewMapControl: false
               });
               
+           // When user drags the map or zooms in/out, update list of passengers in range
+           google.maps.event.addListener(map, 'dragend', function() {showMarkersInViewport()});
+           
+           
+              
               navigator.geolocation.getCurrentPosition(function(position) {
                   var pos = {
                       lat: position.coords.latitude,
@@ -81,7 +86,7 @@
               });
               
               new AutocompleteDirectionsHandler(map);
-          }
+          };
           
           
           var Data = [];		// This array stores all trip requests
@@ -135,7 +140,7 @@
                         }
                    })
                });
-            }
+            };
              
           // Updating driver status to unavailable (position not needed).
           function updateDriverStatus(status) {
@@ -155,7 +160,7 @@
                     window.alert("Status change failed.");
                 }
               }) 
-          }
+          };
           
           // Function to send request to the querytrip API.
           
@@ -218,7 +223,7 @@
             this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(driverstatus);
             this.map.controls[google.maps.ControlPosition.LEFT_TOP].push(originInput);
             this.map.controls[google.maps.ControlPosition.LEFT_TOP].push(destinationInput);
-        }
+        };
                            
         // Sets a listener on a radio button to change the filter type on Places
         // Autocomplete.
