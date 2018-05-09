@@ -59,12 +59,26 @@
 
               	$result = mysqli_query($mysqli, "SELECT * FROM `trip` ");
               	
+              	while ($row = mysqli_fetch_array($result)) {
+              	    $passengerLocation = $row['source'];
+              	    $array = explode(",", $passengerLocation);
+              	    
+              	};
+              	
+              	var marker = new google.maps.Marker({
+              	    position: {lat: array[0], lng: array[1]},
+              	    map: map,
+              	    //title: 'Hello World!'
+              	});
+              	
+
             	?>
 
+
             	var marker = new google.maps.Marker({
-            	    position: {lat: 1.318, lng: 103.650},
+            	    position: {lat: array[0], lng: array[1]},
             	    map: map,
-            	    title: 'Hello World!'
+            	    //title: 'Hello World!'
             	  });
 
             	marker.setMap(map);
@@ -76,7 +90,7 @@
                   };
 
                   var opt = {
-                		  enableHighAccuracy: true,
+                		  enableHighAccuracy: true
                   }
 
                   map.setCenter(pos, opt);
